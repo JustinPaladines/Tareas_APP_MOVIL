@@ -1,0 +1,58 @@
+ion-content {
+  --background: #f5f3fa;
+}
+
+.seccion {
+  padding: 30px 20px 20px;
+}
+
+.seccion > h1 {
+  color: #5b3b8c;
+  font-size: 28px;
+  margin: 0 5px 20px;
+}
+
+ion-list {
+  background: transparent;
+  padding: 0;
+}
+
+/* Cada proyecto */
+ion-item {
+  --background: #ffffff;
+  --padding-start: 20px;
+  --padding-end: 20px;
+  --inner-padding-end: 0;
+
+  margin: 15px 5px;
+  border-radius: 16px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+ion-item h2 {
+  color: #5b3b8c;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  white-space: normal;
+}
+
+ion-item p {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 8px 0;
+  white-space: normal;
+}
+
+
+ion-toolbar {
+  --background: #ffffff;
+}
+
+ion-title {
+  color: #5b3b8c;
+  font-weight: 600;
+}
