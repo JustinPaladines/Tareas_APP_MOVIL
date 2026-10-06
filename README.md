@@ -1,6 +1,7 @@
 <h1> Deber01 _ Desarrollo de Aplicaciones Moviles </h1>
 
 Versión Node:
+
 <img width="302" height="46" alt="image" src="https://github.com/user-attachments/assets/966db26b-7292-41b0-b9fa-dbf19762cc2d" />
 
 <h2> Comando "ionic start cv tabs --type=angular" </h2>
