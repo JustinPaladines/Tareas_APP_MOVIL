@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="contador_multiplos">
+    <h1>Multiplos</h1>
+    <h1> Justin Paladines</h1>
+    <div style="display: flex; justify-content: center; gap: 15px;">
+    <h1>{{contador1}}</h1>
+    <h1>{{contador2}}</h1>
+    <h1>{{contador3}}</h1>
+    </div>
+
+    <div style="display: flex; justify-content: center; gap: 15px;">
+    <h1>{{contador4}}</h1>
+    <h1>{{contador5}}</h1>
+    </div>
+
+    <ion-button
+    (click)="aumentar()"> + aumentar
+    </ion-button>
+    
+    <ion-button
+    color="danger"
+    [disabled]="contador1==0"
+    (click)="disminuir()"> - Disminuir
+    </ion-button>
+
+  </div>
+</ion-content>
