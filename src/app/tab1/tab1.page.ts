@@ -1,13 +1,62 @@
-import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular';
-import { ExploreContainerComponent } from '../explore-container/explore-container.component';
+import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import {
+  IonHeader, IonToolbar, IonTitle, IonContent,
+  IonItem, IonInput, IonButton
+} from '@ionic/angular';
+
+import { DatosService } from '../services/datos';
 
 @Component({
   selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent],
+  standalone: true,
+  templateUrl: './tab1.page.html',
+  imports: [
+    FormsModule,
+    IonHeader, IonToolbar, IonTitle, IonContent,
+    IonItem, IonInput, IonButton
+  ]
 })
 export class Tab1Page {
-  constructor() {}
+  nombre = '';
+  direccion = '';
+  contador = 0;
+  mensaje = '';
+
+  private datos = inject(DatosService);
+  private router = inject(Router);
+
+  aumentar(): void {
+    this.contador++;
+  }
+
+  disminuir(): void {
+    if (this.contador > 0) {
+      this.contador--;
+    }
+  }
+
+  reiniciar(): void {
+    this.contador = 0;
+  }
+
+  enviar(): void {
+    const nombreLimpio = this.nombre.trim();
+    const direccionLimpio = this.direccion.trim();
+
+    if (!nombreLimpio) {
+      this.mensaje = 'Ingresa tu nombre antes de continuar.';
+      return;
+    }
+
+    if (!direccionLimpio) {
+      this.mensaje = 'Ingresa tu direccion antes de continuar.';
+      return;
+    }
+
+    this.mensaje = '';
+    this.datos.guardar(nombreLimpio, direccionLimpio, this.contador);
+    this.router.navigateByUrl('/tabs/tab2');
+  }
 }
