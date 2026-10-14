@@ -5,6 +5,13 @@ import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 
+
+//importar directamente formulario para activar camara
+import {defineCustomElements} from '@ionic/pwa-elements/loader';
+defineCustomElements(window),
+
+
+
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
