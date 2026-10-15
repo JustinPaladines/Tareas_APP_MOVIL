@@ -1,17 +1,116 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Pago total de compra</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  @if (compra) {
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Detalle del producto</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Producto</ion-label>
+          <ion-text>{{ compra.producto }}</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Cantidad</ion-label>
+          <ion-text>{{ compra.cantidad }}</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Precio unitario</ion-label>
+          <ion-text>$ {{ compra.precio | number:'1.2-2' }}</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Subtotal</ion-label>
+          <ion-text>
+            <strong>$ {{ subtotal | number:'1.2-2' }}</strong>
+          </ion-text>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Datos del pago</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="stacked">Descuento %</ion-label>
+          <ion-input
+            [(ngModel)]="descuento"
+            type="number"
+            min="0"
+            max="100"
+            step="0.01"
+            placeholder="Ejemplo: 10">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Dinero recibido:</ion-label>
+          <ion-input
+            [(ngModel)]="dineroRecibido"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="Ejemplo: 100">
+          </ion-input>
+        </ion-item>
+
+        <ion-card color="light">
+          <ion-card-content>
+            <p>Descuento aplicado: $ {{ valorDescuento | number:'1.2-2' }}</p>
+            <h2>
+              <strong>Total final: $ {{ totalFinal | number:'1.2-2' }}</strong>
+            </h2>
+
+            @if (dineroRecibido !== null && dineroRecibido !== undefined) {
+              @if (saldoPendiente > 0) {
+                <ion-text color="danger">
+                  <h2>Saldo pendiente: $ {{ saldoPendiente | number:'1.2-2' }}</h2>
+                </ion-text>
+              } @else {
+                <ion-text color="success">
+                  <h2>Cambio: $ {{ cambio | number:'1.2-2' }}</h2>
+                </ion-text>
+              }
+            }
+          </ion-card-content>
+        </ion-card>
+
+        <ion-button
+          expand="block"
+          (click)="calcularPago()">
+          Calcular pago
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  } @else {
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>No hay compras registradas</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        Registra primero un producto para calcular su pago.
+
+        <ion-button
+          expand="block"
+          (click)="router.navigate(['/tabs/tab1'])">
+          Ir a Compra
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  }
+
 </ion-content>
