@@ -1,0 +1,7 @@
+{
+  "name": "mi-ubicacion",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
