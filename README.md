@@ -56,4 +56,4 @@ CAPTURA PC:
 <img width="500" height="600" alt="image" src="https://github.com/user-attachments/assets/7f7f3c51-454a-4df6-887a-1f0505c42306" />
 
 -
-<img width="300" height="600" alt="image" src="https://github.com/user-attachments/assets/1e1a8a2a-1621-4c98-b858-733a5fe6688a" />
+<img width="450" height="400" alt="image" src="https://github.com/user-attachments/assets/1e1a8a2a-1621-4c98-b858-733a5fe6688a" />
