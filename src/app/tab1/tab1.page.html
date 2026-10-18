@@ -1,17 +1,34 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Mi Ubicación GPS - Justin Paladines y Josselyn Reyes</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> Obtener Coordenadas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      
+      <!-- botón para obtener el GPS -->
+      <ion-button expand="block" (click)="obtenerMiUbicacion()" [disabled]="cargando">
+        {{ cargando ? 'Cargando GPS...' : 'Obtener Mi Ubicación' }}
+      </ion-button>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+      <!-- mostrar en pantalla la urgl generada -->
+      <div *ngIf="urlUbicacion" class="ion-margin-top">
+        <p><strong>Enlace generado:</strong></p>
+        
+        <!-- generar hipervinculo 1 -->
+        <a [href]="urlUbicacion" target="_blank">{{ urlUbicacion }}</a>
+
+        <!-- botón para guardar la url en el txt -->
+        <ion-button color="success" expand="block" class="ion-margin-top" (click)="guardarUbicacionTxt()">
+          Guardar Ubicación (.txt)
+        </ion-button>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
 </ion-content>
