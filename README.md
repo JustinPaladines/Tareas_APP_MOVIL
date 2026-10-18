@@ -24,9 +24,9 @@ CAPTURA PC:
 
 <h2> EVIDENCIA APK: </h2>
 
-
+__
 <h2> Punto 1: Hipervínculo ubicación actual </2>
-
+__
 
 
 <img width="300" height="600" alt="image" src="https://github.com/user-attachments/assets/56bde7d8-0c88-4649-8c24-c6f4911aceb1" />
