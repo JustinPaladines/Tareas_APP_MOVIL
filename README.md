@@ -38,7 +38,7 @@ CAPTURA PC:
 <img width="469" height="327" alt="image" src="https://github.com/user-attachments/assets/46dd74a0-595c-4364-8471-041114c467bf" />
 
 -
-<img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/936c987d-4930-4d31-8618-9e2870ab1db9" />
+<img width="450" height="400" alt="image" src="https://github.com/user-attachments/assets/936c987d-4930-4d31-8618-9e2870ab1db9" />
 
 
 <h3> Punto 2: Hipervínculo Ruta definida </h3>
