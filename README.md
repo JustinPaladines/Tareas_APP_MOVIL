@@ -2,17 +2,27 @@
 <h3> Justin Paladines y Josselyn Reyes </h3>
 
 1.- Crear un hipervínculo que nos lleve a la posición gps de su sitio.
+
 2.- Crear un hipervínculo que muestre su ruta a casa, al parque o algún sitio de su interés.
+
 Ejemplo:
+
 https://www.google.com/maps/dir/?api=1&origin={LAT,LNG}&destination={LAT,LNG}&waypoints={LAT,LNG}%7C{LAT,LNG}
+
 3.- Crear un botón que guarde su ubicación en un archivo txt, puede ser la url previamente creada.
+
 4.- Crear un botón que guarde su ruta en un archivo txt, puede ser la url previamente creada.
+
+CAPTURA PC:
 
 <img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/dd384191-df7a-4481-807e-049786b08828" />
 
+-
+
 <img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/e810a745-7716-4fb7-b3a9-d1fd426290d7" />
 
-EVIDENCIA APK:
+
+<h2> EVIDENCIA APK: </h2>
 
 <h3> Punto 1: Hipervínculo ubicación actual </h3>
 
