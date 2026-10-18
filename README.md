@@ -50,9 +50,9 @@ CAPTURA PC:
 <img width="300" height="600" alt="image" src="https://github.com/user-attachments/assets/9fb681a0-ab46-4a55-a14a-045fdb34d9de" />
 
 
-<img width="700" height="600" alt="image" src="https://github.com/user-attachments/assets/de9aaada-d8ab-496c-898e-f4b0ce4682f5" />
+<img width="500" height="700" alt="image" src="https://github.com/user-attachments/assets/de9aaada-d8ab-496c-898e-f4b0ce4682f5" />
 
 
-<img width="500" height="6000" alt="image" src="https://github.com/user-attachments/assets/7f7f3c51-454a-4df6-887a-1f0505c42306" />
+<img width="500" height="600" alt="image" src="https://github.com/user-attachments/assets/7f7f3c51-454a-4df6-887a-1f0505c42306" />
 
-<img width="250" height="200" alt="image" src="https://github.com/user-attachments/assets/1e1a8a2a-1621-4c98-b858-733a5fe6688a" />
+<img width="300" height="600" alt="image" src="https://github.com/user-attachments/assets/1e1a8a2a-1621-4c98-b858-733a5fe6688a" />
