@@ -15,11 +15,11 @@ https://www.google.com/maps/dir/?api=1&origin={LAT,LNG}&destination={LAT,LNG}&wa
 
 CAPTURA PC:
 
-<img width="700" height="600" alt="image" src="https://github.com/user-attachments/assets/dd384191-df7a-4481-807e-049786b08828" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/dd384191-df7a-4481-807e-049786b08828" />
 
 -
 
-<img width="700" height="600" alt="image" src="https://github.com/user-attachments/assets/e810a745-7716-4fb7-b3a9-d1fd426290d7" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/e810a745-7716-4fb7-b3a9-d1fd426290d7" />
 
 
 <h2> EVIDENCIA APK: </h2>
