@@ -29,16 +29,16 @@ CAPTURA PC:
 
 <img width="300" height="600" alt="image" src="https://github.com/user-attachments/assets/56bde7d8-0c88-4649-8c24-c6f4911aceb1" />
 
--
+_
 <img width="300" height="600" alt="image" src="https://github.com/user-attachments/assets/007e39cf-59da-448d-81b5-fdd0f8cdb055" />
 
--
+_
 <img width="300" height="600" alt="image" src="https://github.com/user-attachments/assets/b05a1885-eb69-43b9-9df9-447323e570a5" />
 
--
+_
 <img width="469" height="327" alt="image" src="https://github.com/user-attachments/assets/46dd74a0-595c-4364-8471-041114c467bf" />
 
--
+_
 <img width="450" height="400" alt="image" src="https://github.com/user-attachments/assets/936c987d-4930-4d31-8618-9e2870ab1db9" />
 
 
@@ -46,13 +46,13 @@ CAPTURA PC:
 
 <img width="300" height="600" alt="image" src="https://github.com/user-attachments/assets/ccf80dfd-e152-4bf5-8a1e-6a4f4c4a8825" />
 
--
+_
 <img width="300" height="600" alt="image" src="https://github.com/user-attachments/assets/9fb681a0-ab46-4a55-a14a-045fdb34d9de" />
 
--
+_
 <img width="500" height="700" alt="image" src="https://github.com/user-attachments/assets/de9aaada-d8ab-496c-898e-f4b0ce4682f5" />
 
--
+_
 <img width="320" height="400" alt="image" src="https://github.com/user-attachments/assets/7f7f3c51-454a-4df6-887a-1f0505c42306" />
 
 -
