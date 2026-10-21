@@ -9,13 +9,10 @@ export interface UserPhoto {
 @Injectable({
   providedIn: 'root',
 })
-
-
 export class PhotoService {
 
   public photos = signal<UserPhoto[]>([]);
 
-  
   public async addNewToGallery() {
     // Toma la fotografia 
     const capturedPhoto = await Camera.getPhoto({
@@ -27,7 +24,6 @@ export class PhotoService {
       saveToGallery: true, //guarda la fotografia en la galeria del celular
     });
 
-   
     this.photos.update((photos) => [
       {
         filepath: capturedPhoto.path ?? 'soon...',
@@ -35,5 +31,10 @@ export class PhotoService {
       },
       ...photos,
     ]);
+  }
+
+  // metodo para eliminar la foto de la vista de la aplicación
+  public async deletePhoto(position: number) {
+    this.photos.update((photos) => photos.filter((_, index) => index !== position));
   }
 }
