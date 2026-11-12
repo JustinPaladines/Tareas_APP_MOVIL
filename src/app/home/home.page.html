@@ -1,0 +1,157 @@
+<ion-header>
+  <ion-toolbar class="personal">
+    <ion-title>TalentFlow S.A - JJ </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="form-container">
+    <!-- Formulario Reactivo -->
+    <form [formGroup]="formulario" (ngSubmit)="guardar()">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Registro de Candidato</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <!-- DATOS PERSONALES -->
+          <div class="section-title">Datos Personales</div>
+
+          <ion-item class="custom-item">
+            <ion-input label="Nombre" labelPlacement="stacked" placeholder="Ingrese su nombre completo" formControlName="nombres"></ion-input>
+          </ion-item>
+          
+          <ion-item class="custom-item">
+            <ion-input label="Correo electrónico" labelPlacement="stacked" type="email" placeholder="correo@ejemplo.com" formControlName="correo"></ion-input>
+          </ion-item>
+          
+          <ion-item class="custom-item">
+            <ion-input label="Teléfono" labelPlacement="stacked" type="tel" placeholder="Ingrese su teléfono" formControlName="telefono"></ion-input>
+          </ion-item>
+          
+          <ion-item class="custom-item">
+            <ion-input label="Fecha de nacimiento" labelPlacement="stacked" type="date" formControlName="fechaNacimiento" max="2008-12-31"></ion-input>
+          </ion-item>
+
+          <!-- PERFIL PROFESIONAL -->
+          <div class="section-title">Perfil Profesional</div>
+
+          <ion-item class="custom-item">
+            <ion-select label="Cargo" labelPlacement="stacked" placeholder="Seleccione su cargo" formControlName="cargo">
+              <ion-select-option value="Desarrollador móvil">Desarrollador móvil</ion-select-option>
+              <ion-select-option value="Analista de datos">Analista de datos</ion-select-option>
+              <ion-select-option value="Diseñador UX/UI">Diseñador UX/UI</ion-select-option>
+              <ion-select-option value="Soporte TI">Soporte TI</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <div class="radio-group-container">
+            <ion-radio-group formControlName="nivelAcademico">
+              <ion-list-header lines="none">
+                <ion-label class="sub-label">Nivel académico</ion-label>
+              </ion-list-header>
+              <ion-item lines="none"><ion-radio value="Bachillerato">Bachillerato</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="Tecnología">Tecnología</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="Tercer nivel">Tercer nivel</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="Posgrado">Posgrado</ion-radio></ion-item>
+            </ion-radio-group>
+          </div>
+
+          <ion-item class="custom-item">
+            <ion-input label="Años de experiencia" labelPlacement="stacked" type="number" placeholder="Ej. 3" formControlName="experienciaAnios"></ion-input>
+          </ion-item>
+
+          <div class="segment-label">Modalidad de trabajo</div>
+          <ion-segment formControlName="modalidad">
+            <ion-segment-button value="Presencial"><ion-label>Presencial</ion-label></ion-segment-button>
+            <ion-segment-button value="Híbrida"><ion-label>Híbrida</ion-label></ion-segment-button>
+            <ion-segment-button value="Remota"><ion-label>Remota</ion-label></ion-segment-button>
+          </ion-segment>
+
+          <ion-item class="custom-item">
+            <ion-select label="Habilidades técnicas" labelPlacement="stacked" [multiple]="true" formControlName="habilidades">
+              <ion-select-option value="Angular">Angular</ion-select-option>
+              <ion-select-option value="Ionic">Ionic</ion-select-option>
+              <ion-select-option value="JavaScript">JavaScript</ion-select-option>
+              <ion-select-option value="Python">Python</ion-select-option>
+              <ion-select-option value="SQL">SQL</ion-select-option>
+              <ion-select-option value="Git">Git</ion-select-option>
+              <ion-select-option value="Firebase">Firebase</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <!-- DISPONIBILIDAD Y PRESENTACIÓN -->
+          <div class="section-title">Disponibilidad y Presentación</div>
+
+          <!-- Aquí aplicamos [min]="fechaHoy" para evitar fechas antiguas según los requisitos del taller -->
+          <ion-item class="custom-item">
+            <ion-input label="Fecha disponible para iniciar" labelPlacement="stacked" type="date" [min]="fechaHoy" formControlName="fechaDisponibilidad"></ion-input>
+          </ion-item>
+
+          <ion-item class="custom-item">
+            <ion-input label="Aspiración salarial (USD)" labelPlacement="stacked" type="number" placeholder="Ej. 1200" formControlName="aspiracionSalarial"></ion-input>
+          </ion-item>
+
+          <ion-item class="custom-item">
+            <ion-textarea label="Resumen profesional" labelPlacement="stacked" placeholder="Escriba su experiencia (mínimo 30 caracteres)" rows="4" formControlName="resumen"></ion-textarea>
+          </ion-item>
+
+          <div class="checkbox-container">
+            <ion-checkbox formControlName="consentimiento">Aceptación de tratamiento de datos de prueba</ion-checkbox>
+          </div>
+
+          <!-- Botón Guardar -->
+          <ion-button expand="block" type="submit" class="ion-margin-top submit-btn" [disabled]="formulario.invalid || guardando">
+            {{ guardando ? 'Guardando...' : 'Guardar candidato' }}
+          </ion-button>
+          
+          <p *ngIf="mensaje" role="status" class="ion-text-center error-msg">{{ mensaje }}</p>
+        </ion-card-content>
+      </ion-card>
+    </form>
+
+    <!-- LISTADO DE CANDIDATOS -->
+    <h2 class="list-title">Candidatos registrados</h2>
+    <ion-list class="candidate-list">
+      <ion-item *ngFor="let candidato of candidatos" button="true" (click)="abrirDetalle(candidato)" class="candidate-item">
+        <ion-label>
+          <h2>{{ candidato.nombres }}</h2>
+          <p>{{ candidato.correo }} • <strong>{{ candidato.cargo }}</strong></p>
+          <p>Experiencia: {{ candidato.experienciaAnios }} años | Salario: ${{ candidato.aspiracionSalarial }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <!-- MODAL PARA VER EL DETALLE COMPLETO -->
+  <ion-modal [isOpen]="modalAbierto" (didDismiss)="cerrarDetalle()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar class="personal">
+          <ion-title>Detalle del Candidato</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="cerrarDetalle()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div *ngIf="candidatoSeleccionado">
+          <ion-list>
+            <ion-item><ion-label><h3>Nombres:</h3><p>{{ candidatoSeleccionado.nombres }}</p></ion-label></ion-item>
+            <ion-item><ion-label><h3>Correo:</h3><p>{{ candidatoSeleccionado.correo }}</p></ion-label></ion-item>
+            <ion-item><ion-label><h3>Teléfono:</h3><p>{{ candidatoSeleccionado.telefono }}</p></ion-label></ion-item>
+            <ion-item><ion-label><h3>Fecha de Nacimiento:</h3><p>{{ candidatoSeleccionado.fechaNacimiento }}</p></ion-label></ion-item>
+            <ion-item><ion-label><h3>Cargo:</h3><p>{{ candidatoSeleccionado.cargo }}</p></ion-label></ion-item>
+            <ion-item><ion-label><h3>Nivel Académico:</h3><p>{{ candidatoSeleccionado.nivelAcademico }}</p></ion-label></ion-item>
+            <ion-item><ion-label><h3>Experiencia:</h3><p>{{ candidatoSeleccionado.experienciaAnios }} años</p></ion-label></ion-item>
+            <ion-item><ion-label><h3>Modalidad:</h3><p>{{ candidatoSeleccionado.modalidad }}</p></ion-label></ion-item>
+            <ion-item><ion-label><h3>Habilidades:</h3><p>{{ candidatoSeleccionado.habilidades?.join(', ') }}</p></ion-label></ion-item>
+            <ion-item><ion-label><h3>Disponibilidad:</h3><p>{{ candidatoSeleccionado.fechaDisponibilidad }}</p></ion-label></ion-item>
+            <ion-item><ion-label><h3>Aspiración Salarial:</h3><p>${{ candidatoSeleccionado.aspiracionSalarial }} USD</p></ion-label></ion-item>
+            <ion-item><ion-label><h3>Resumen Profesional:</h3><p class="ion-text-wrap">{{ candidatoSeleccionado.resumen }}</p></ion-label></ion-item>
+          </ion-list>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

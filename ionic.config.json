@@ -1,0 +1,7 @@
+{
+  "name": "registro-estudiantes",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
