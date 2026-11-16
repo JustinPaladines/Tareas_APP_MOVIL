@@ -1,0 +1,7 @@
+{
+  "name": "connectchat",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
