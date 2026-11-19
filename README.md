@@ -94,13 +94,15 @@ Supabase funciona como backend principal de la aplicación. Se utiliza para:
 
 ### Firebase Firestore
 
-Firebase Firestore se utiliza específicamente para el indicador de escritura.
 
-Gestionar las reacciones de los mensajes.
+Firebase Firestore se utiliza específicamente para el indicador de escritura.
 
 Cuando un usuario comienza a escribir, se actualiza su estado en Firestore. El otro participante escucha estos cambios y puede visualizar el indicador «Está escribiendo...».
 
 La información de escritura se organiza por sala de conversación, permitiendo identificar qué participante está escribiendo.
+
+Gestionar las reacciones de los mensajes.
+
 
 ---
 
