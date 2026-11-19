@@ -1,0 +1,299 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ nombreUsuario || 'Conversación' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="contenedor-chat">
+
+    <!-- Estado de carga -->
+    <div *ngIf="cargando" class="estado">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Iniciando conversación...</p>
+    </div>
+
+    <!-- Mensajes de error -->
+    <div *ngIf="!cargando && mensaje" class="estado">
+      <ion-text color="danger">{{ mensaje }}</ion-text>
+    </div>
+
+    <!-- Lista de mensajes -->
+    <div *ngIf="!cargando && salaId" class="lista-mensajes">
+
+      <div *ngIf="mensajes.length === 0" class="sin-mensajes">
+        <p>Aún no hay mensajes.</p>
+        <p>¡Envía el primero!</p>
+      </div>
+
+      <div
+        *ngFor="let item of mensajes"
+        class="mensaje"
+        [class.mio]="item.remitente_id === usuarioActualId">
+
+        <div class="burbuja">
+
+          <!-- Mensaje eliminado -->
+          <p *ngIf="item.eliminado" class="mensaje-eliminado">
+            Este mensaje fue eliminado.
+          </p>
+
+          <div *ngIf="!item.eliminado">
+
+            <!-- Editar mensaje -->
+            <div *ngIf="mensajeEditandoId === item.id">
+              <ion-input
+                [(ngModel)]="contenidoEditado"
+                placeholder="Editar mensaje">
+              </ion-input>
+
+              <div class="acciones-mensaje">
+                <ion-button size="small" (click)="guardarEdicion()">
+                  Guardar
+                </ion-button>
+
+                <ion-button
+                  size="small"
+                  fill="clear"
+                  (click)="cancelarEdicion()">
+                  Cancelar
+                </ion-button>
+              </div>
+            </div>
+
+            <!-- Contenido del mensaje -->
+            <div *ngIf="mensajeEditandoId !== item.id">
+
+              <!-- Texto -->
+              <p *ngIf="item.tipo === 'texto'">
+                {{ item.contenido }}
+              </p>
+
+              <!-- Imagen -->
+              <div
+                *ngIf="item.tipo === 'imagen'"
+                class="contenedor-imagen">
+
+                <img
+                  *ngIf="item.imagenUrl"
+                  [src]="item.imagenUrl"
+                  [alt]="item.nombre_archivo || 'Imagen compartida'">
+
+                <p *ngIf="!item.imagenUrl">
+                  No se pudo cargar la imagen.
+                </p>
+
+                <small>{{ item.nombre_archivo }}</small>
+              </div>
+
+              <!-- Archivo -->
+              <div
+                *ngIf="item.tipo === 'archivo'"
+                class="contenedor-archivo">
+
+                <p>
+                  {{ item.nombre_archivo || 'Archivo compartido' }}
+                </p>
+
+                <a
+                  *ngIf="item.archivoUrl"
+                  [href]="item.archivoUrl"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Descargar archivo
+                </a>
+
+                <small *ngIf="!item.archivoUrl">
+                  No se pudo cargar el archivo.
+                </small>
+              </div>
+
+              <!-- Ubicación -->
+              <div
+                *ngIf="item.tipo === 'ubicacion'"
+                class="contenedor-ubicacion">
+
+                <p>Ubicación compartida</p>
+
+                <a
+                  [href]="'https://www.google.com/maps?q=' + item.latitud + ',' + item.longitud"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Ver ubicación en Google Maps
+                </a>
+              </div>
+
+              <small *ngIf="item.editado && item.tipo === 'texto'">
+                Editado
+              </small>
+
+              <!-- Acciones del mensaje -->
+              <div
+                *ngIf="item.remitente_id === usuarioActualId"
+                class="acciones-mensaje">
+
+                <ion-button
+                  *ngIf="item.tipo === 'texto'"
+                  size="small"
+                  fill="clear"
+                  (click)="iniciarEdicion(item)">
+                  Editar
+                </ion-button>
+
+                <ion-button
+                  size="small"
+                  fill="clear"
+                  color="danger"
+                  (click)="eliminarMensaje(item)">
+                  Eliminar
+                </ion-button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Reacciones del mensaje -->
+        <div
+          class="reacciones-mensaje"
+          *ngIf="item.reacciones && item.reacciones.length > 0">
+
+          <button
+            type="button"
+            class="reaccion"
+            *ngFor="let reaccion of item.reacciones"
+            [class.mi-reaccion]="reaccion.miReaccion"
+            (click)="seleccionarReaccion(item, reaccion.emoji)">
+
+            {{ reaccion.emoji }}
+            <span>{{ reaccion.cantidad }}</span>
+          </button>
+        </div>
+
+        <!-- Botón para abrir el selector -->
+        <div class="contenedor-boton-reaccion" *ngIf="!item.eliminado">
+          <button
+            type="button"
+            class="boton-reaccion"
+            (click)="abrirSelectorReaccion(item)">
+            ☺ +
+          </button>
+        </div>
+
+        <!-- Selector de emojis -->
+        <div
+          class="selector-reacciones"
+          *ngIf="item.mostrarSelectorReaccion">
+
+          <button
+            type="button"
+            *ngFor="let emoji of emojisReaccion"
+            (click)="seleccionarReaccion(item, emoji)">
+            {{ emoji }}
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Indicador de escritura -->
+    <div
+      *ngIf="otroUsuarioEscribiendo"
+      class="estado-escritura">
+
+      <span class="puntos-escritura">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+
+      <span>Está escribiendo...</span>
+
+    </div>
+
+  </div>
+</ion-content>
+
+<!-- Área inferior de escritura -->
+<ion-footer *ngIf="!cargando && salaId">
+  <ion-toolbar>
+
+    <div class="contenedor-escritura">
+
+      <!-- Selector de imagen -->
+      <input
+        #selectorImagen
+        type="file"
+        accept="image/*"
+        hidden
+        (change)="seleccionarImagen($event)">
+
+      <!-- Selector de archivo -->
+      <input
+        #selectorArchivo
+        type="file"
+        hidden
+        (change)="seleccionarArchivo($event)">
+
+      <!-- Herramientas -->
+      <div class="herramientas-chat">
+
+        <ion-button
+          fill="clear"
+          size="small"
+          (click)="selectorImagen.click()"
+          [disabled]="enviandoImagen">
+
+          {{ enviandoImagen ? 'Subiendo...' : 'Imagen' }}
+
+        </ion-button>
+
+        <ion-button
+          fill="clear"
+          size="small"
+          (click)="selectorArchivo.click()"
+          [disabled]="enviandoArchivo">
+
+          {{ enviandoArchivo ? 'Subiendo...' : 'Archivo' }}
+
+        </ion-button>
+
+        <ion-button
+          fill="clear"
+          size="small"
+          (click)="compartirUbicacion()"
+          [disabled]="compartiendoUbicacion">
+
+          {{ compartiendoUbicacion ? 'Ubicando...' : 'Ubicación' }}
+
+        </ion-button>
+
+      </div>
+
+      <!-- Entrada de mensaje -->
+      <div class="entrada-chat">
+
+        <ion-input
+          [(ngModel)]="nuevoMensaje"
+          placeholder="Escribe un mensaje..."
+          (ionInput)="actualizarEstadoEscritura()"
+          (ionBlur)="detenerEscritura()"
+          (keyup.enter)="enviarMensaje()">
+        </ion-input>
+
+        <ion-button
+          (click)="enviarMensaje()"
+          [disabled]="!nuevoMensaje.trim()">
+
+          Enviar
+
+        </ion-button>
+
+      </div>
+
+    </div>
+
+  </ion-toolbar>
+</ion-footer>

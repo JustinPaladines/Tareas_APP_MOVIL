@@ -1,0 +1,84 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mis grupos</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/crear-grupo">
+        Crear grupo
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="contenedor">
+
+    <h1>Mis grupos</h1>
+
+    <p class="descripcion">
+      Aquí encontrarás las conversaciones grupales en las que participas.
+    </p>
+
+    <!-- Cargando -->
+    <div class="estado" *ngIf="cargando">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando grupos...</p>
+    </div>
+
+    <!-- Sin grupos -->
+    <div
+      class="estado"
+      *ngIf="!cargando && grupos.length === 0">
+
+      <ion-text color="medium">
+        {{ mensaje }}
+      </ion-text>
+
+      <ion-button
+        expand="block"
+        routerLink="/crear-grupo">
+        Crear mi primer grupo
+      </ion-button>
+    </div>
+
+    <!-- Lista de grupos -->
+    <ion-list *ngIf="!cargando && grupos.length > 0">
+
+      <ion-item
+        *ngFor="let grupo of grupos"
+        [routerLink]="['/grupo', grupo.id]"
+        button>
+        <div class="icono-grupo" slot="start">
+          <span>{{ grupo.nombre.charAt(0).toUpperCase() }}</span>
+        </div>
+
+        <ion-label>
+          <h2>{{ grupo.nombre }}</h2>
+          <p>Conversación grupal</p>
+        </ion-label>
+      </ion-item>
+
+    </ion-list>
+
+    <!-- Mensaje de error -->
+    <div
+      class="mensaje"
+      *ngIf="mensaje && !cargando && grupos.length > 0">
+
+      <ion-text color="danger">
+        {{ mensaje }}
+      </ion-text>
+    </div>
+
+    <!-- Actualizar -->
+    <ion-button
+      expand="block"
+      fill="outline"
+      (click)="cargarGrupos()"
+      [disabled]="cargando">
+      Actualizar grupos
+    </ion-button>
+
+  </div>
+</ion-content>

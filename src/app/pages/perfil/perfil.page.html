@@ -1,0 +1,105 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Mi perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="contenedor">
+
+    <!-- Cargando información -->
+    <div class="cargando" *ngIf="cargando">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando perfil...</p>
+    </div>
+
+    <!-- Información del perfil -->
+    <div *ngIf="!cargando">
+
+      <div class="encabezado">
+        <h1>Mi perfil</h1>
+        <p>Administra tu información personal.</p>
+      </div>
+
+      <!-- Fotografía -->
+      <div class="foto-container">
+
+        <img
+          *ngIf="fotoUrl"
+          [src]="fotoUrl"
+          alt="Foto de perfil">
+
+        <div class="foto-vacia" *ngIf="!fotoUrl">
+          {{ nombre ? nombre.charAt(0).toUpperCase() : '?' }}
+        </div>
+
+        <p>Foto de perfil</p>
+
+        <div class="selector-foto">
+          <input
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            (change)="seleccionarFoto($event)">
+
+          <ion-button
+            expand="block"
+            (click)="subirFoto()"
+            [disabled]="!archivoSeleccionado || subiendoFoto">
+
+            {{ subiendoFoto ? 'Subiendo fotografía...' : 'Subir fotografía' }}
+
+          </ion-button>
+        </div>
+
+      </div>
+
+
+
+      <!-- Nombre -->
+      <div class="campo">
+        <ion-label>Nombre completo</ion-label>
+
+        <ion-item>
+          <ion-input
+            type="text"
+            placeholder="Escribe tu nombre"
+            [(ngModel)]="nombre">
+          </ion-input>
+        </ion-item>
+      </div>
+
+      <!-- Descripción -->
+      <div class="campo">
+        <ion-label>Descripción</ion-label>
+
+        <ion-item>
+          <ion-textarea
+            placeholder="Cuéntanos algo sobre ti..."
+            [(ngModel)]="descripcion"
+            rows="4"
+            autoGrow="true">
+          </ion-textarea>
+        </ion-item>
+      </div>
+
+      <!-- Mensajes -->
+      <ion-text color="danger" *ngIf="mensaje">
+        <p class="mensaje">{{ mensaje }}</p>
+      </ion-text>
+
+      <!-- Guardar -->
+      <ion-button
+        expand="block"
+        class="boton"
+        (click)="guardarCambios()"
+        [disabled]="guardando">
+
+        {{ guardando ? 'Guardando...' : 'Guardar cambios' }}
+
+      </ion-button>
+
+    </div>
+
+  </div>
+</ion-content>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "140363324875",
+    "project_id": "connectchat-cbefb",
+    "storage_bucket": "connectchat-cbefb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140363324875:android:cede24f55670cb260aaa4e",
+        "android_client_info": {
+          "package_name": "com.connectchat.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsQ2fMsyQSJjW7ASka4pqlquQHvm1HvgA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

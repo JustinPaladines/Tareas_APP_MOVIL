@@ -74,3 +74,11 @@ Thumbs.db
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Credenciales y configuraciones privadas
+src/app/core/services/supabase.service.ts
+src/app/core/services/firebase.service.ts
+
+# Archivos de entorno
+src/environments/environment.ts
+src/environments/environment.prod.ts

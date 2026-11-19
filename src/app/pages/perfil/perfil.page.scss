@@ -1,0 +1,34 @@
+:host { --cc-purple:#7050a0; --cc-dark:#503675; --cc-green:#78ad88; }
+ion-header ion-toolbar { --background:#fff; --color:var(--cc-dark); --border-color:#eee8f4; --min-height:62px; box-shadow:0 3px 14px rgba(58,39,83,.06); }
+ion-title { font-size:18px; font-weight:750; }
+ion-content { --background:#f6f4f9; }
+.contenedor { width:100%; max-width:500px; margin:0 auto; padding:27px 20px 38px; }
+.encabezado { text-align:center; margin-bottom:23px; }
+.encabezado h1 { color:#503675; font-size:26px; font-weight:850; margin:0 0 7px; }
+.encabezado p { color:#81788d; font-size:14px; margin:0; }
+.foto-container {
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  padding:23px 18px; margin-bottom:24px; background:#fff; border:1px solid #eee8f4;
+  border-radius:21px; box-shadow:0 6px 18px rgba(60,43,83,.05);
+}
+.foto-container img, .foto-vacia {
+  width:118px; height:118px; border-radius:50%; object-fit:cover;
+  border:5px solid #f0eaf6; box-shadow:0 5px 15px rgba(60,43,83,.12);
+}
+.foto-vacia { display:flex; align-items:center; justify-content:center; margin:auto; background:linear-gradient(145deg,#eee8f6,#e4f1e7); color:#604585; font-size:42px; font-weight:850; }
+.foto-container > p { color:#81788d; font-size:13px; font-weight:650; margin:12px 0 10px; }
+.selector-foto { width:100%; max-width:290px; }
+.selector-foto input { width:100%; color:#70677d; font-size:12px; margin:7px 0 12px; }
+.selector-foto ion-button { --background:#e8f2ea; --color:#477958; --border-radius:12px; --box-shadow:none; font-size:13px; font-weight:700; }
+.campo { margin-bottom:19px; }
+.campo ion-label { display:block; color:#57436f; font-size:13px; font-weight:750; margin:0 0 8px 5px; }
+.campo ion-item {
+  --background:#fff; --color:#30283b; --border-radius:14px; --border-color:#e8e0ef;
+  --border-width:1px; --border-style:solid; --padding-start:14px; --inner-padding-end:13px;
+  border-radius:14px; box-shadow:0 4px 13px rgba(60,43,83,.04);
+}
+.campo ion-input, .campo ion-textarea { --color:#30283b; --placeholder-color:#968da0; --highlight-color-focused:#7050a0; font-size:14px; }
+.boton { --background:#7050a0; --background-hover:#5b3f83; --color:#fff; --border-radius:14px; --box-shadow:0 6px 15px rgba(112,80,160,.18); height:49px; margin-top:13px; font-weight:750; }
+.mensaje { color:#b04455; text-align:center; font-size:13px; }
+.cargando { display:flex; flex-direction:column; align-items:center; gap:10px; margin-top:100px; color:#7050a0; }
+.cargando ion-spinner { color:#7050a0; }

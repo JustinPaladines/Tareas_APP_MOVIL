@@ -1,0 +1,217 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/grupos">
+        Volver
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>{{ nombreGrupo || 'Chat grupal' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="contenedor">
+
+    <div class="estado" *ngIf="cargando">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando conversación...</p>
+    </div>
+
+    <div class="estado" *ngIf="!cargando && mensaje">
+      <ion-text color="danger">{{ mensaje }}</ion-text>
+    </div>
+
+    <div
+      class="lista-mensajes"
+      *ngIf="!cargando && salaId">
+
+      <div
+        *ngFor="let item of mensajes"
+        class="mensaje-fila"
+        [class.propio]="item.remitente_id === usuarioActualId">
+
+        <div class="burbuja">
+
+          <p *ngIf="item.eliminado" class="eliminado">
+            Este mensaje fue eliminado.
+          </p>
+
+          <div *ngIf="!item.eliminado">
+
+            <div *ngIf="mensajeEditandoId === item.id">
+              <ion-input
+                [(ngModel)]="contenidoEditado"
+                placeholder="Editar mensaje">
+              </ion-input>
+
+              <div class="acciones">
+                <ion-button size="small" (click)="guardarEdicion()">
+                  Guardar
+                </ion-button>
+
+                <ion-button
+                  size="small"
+                  fill="clear"
+                  (click)="cancelarEdicion()">
+                  Cancelar
+                </ion-button>
+              </div>
+            </div>
+
+            <div *ngIf="mensajeEditandoId !== item.id">
+
+              <p
+                class="contenido"
+                *ngIf="item.tipo === 'texto'">
+                {{ item.contenido }}
+              </p>
+
+              <div
+                class="contenedor-imagen"
+                *ngIf="item.tipo === 'imagen'">
+
+                <img
+                  *ngIf="item.imagenUrl"
+                  [src]="item.imagenUrl"
+                  [alt]="item.nombre_archivo || 'Imagen compartida'">
+
+                <p *ngIf="!item.imagenUrl">
+                  No se pudo cargar la imagen.
+                </p>
+
+                <small>{{ item.nombre_archivo }}</small>
+              </div>
+
+              <div
+                class="contenedor-archivo"
+                *ngIf="item.tipo === 'archivo'">
+
+                <p>{{ item.nombre_archivo || 'Archivo compartido' }}</p>
+
+                <a
+                  *ngIf="item.archivoUrl"
+                  [href]="item.archivoUrl"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Descargar archivo
+                </a>
+
+                <small *ngIf="!item.archivoUrl">
+                  No se pudo cargar el archivo.
+                </small>
+              </div>
+
+              <div
+                class="contenedor-ubicacion"
+                *ngIf="item.tipo === 'ubicacion'">
+
+                <p>Ubicación compartida</p>
+
+                <a
+                  [href]="'https://www.google.com/maps?q=' + item.latitud + ',' + item.longitud"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Ver ubicación en Google Maps
+                </a>
+              </div>
+
+              <small *ngIf="item.editado && item.tipo === 'texto'">
+                Editado
+              </small>
+
+            </div>
+
+            <div
+              class="acciones"
+              *ngIf="
+                item.remitente_id === usuarioActualId &&
+                mensajeEditandoId !== item.id
+              ">
+
+              <ion-button
+                *ngIf="item.tipo === 'texto'"
+                size="small"
+                fill="clear"
+                (click)="iniciarEdicion(item)">
+                Editar
+              </ion-button>
+
+              <ion-button
+                size="small"
+                fill="clear"
+                color="danger"
+                (click)="eliminarMensaje(item)">
+                Eliminar
+              </ion-button>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="estado" *ngIf="mensajes.length === 0">
+        <ion-text color="medium">
+          Todavía no hay mensajes. ¡Escribe el primero!
+        </ion-text>
+      </div>
+
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer *ngIf="!cargando && salaId">
+  <ion-toolbar>
+    <div class="formulario-mensaje">
+
+      <input
+        #selectorImagen
+        type="file"
+        accept="image/*"
+        hidden
+        (change)="seleccionarImagen($event)">
+
+      <input
+        #selectorArchivo
+        type="file"
+        hidden
+        (change)="seleccionarArchivo($event)">
+
+      <ion-button
+        fill="clear"
+        (click)="selectorImagen.click()"
+        [disabled]="enviandoImagen">
+        {{ enviandoImagen ? 'Subiendo...' : 'Imagen' }}
+      </ion-button>
+
+      <ion-button
+        fill="clear"
+        (click)="selectorArchivo.click()"
+        [disabled]="enviandoArchivo">
+        {{ enviandoArchivo ? 'Subiendo...' : 'Archivo' }}
+      </ion-button>
+
+      <ion-button
+        fill="clear"
+        (click)="compartirUbicacion()"
+        [disabled]="compartiendoUbicacion">
+        {{ compartiendoUbicacion ? 'Ubicando...' : 'Ubicación' }}
+      </ion-button>
+
+      <ion-input
+        [(ngModel)]="nuevoMensaje"
+        placeholder="Escribe un mensaje..."
+        (keyup.enter)="enviarMensaje()">
+      </ion-input>
+
+      <ion-button
+        (click)="enviarMensaje()"
+        [disabled]="!nuevoMensaje.trim()">
+        Enviar
+      </ion-button>
+
+    </div>
+  </ion-toolbar>
+</ion-footer>

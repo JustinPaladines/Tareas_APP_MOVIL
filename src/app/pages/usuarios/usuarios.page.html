@@ -1,0 +1,70 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="contenedor">
+
+    <h1>Directorio de usuarios</h1>
+
+    <p class="descripcion">
+      Busca y encuentra a otras personas registradas en ConnectChat.
+    </p>
+
+    <!-- Buscador -->
+    <ion-searchbar
+      placeholder="Buscar usuario..."
+      [(ngModel)]="textoBusqueda"
+      animated="true"
+      debounce="300">
+    </ion-searchbar>
+
+    <!-- Cargando -->
+    <div class="estado" *ngIf="cargando">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando usuarios...</p>
+    </div>
+
+    <!-- Mensaje cuando no hay usuarios -->
+    <div class="estado" *ngIf="!cargando && usuarios.length === 0">
+      <ion-text color="medium">
+        {{ mensaje }}
+      </ion-text>
+    </div>
+
+    <!-- Lista de usuarios -->
+    <ion-list *ngIf="!cargando && usuarios.length > 0">
+
+      <ion-item
+      *ngFor="let usuario of usuariosFiltrados"
+      [routerLink]="['/chat', usuario.id]"
+      button>
+        <ion-label>
+          <h2>{{ usuario.nombre }}</h2>
+
+          <p>
+            {{ usuario.descripcion || 'Sin descripción disponible' }}
+          </p>
+        </ion-label>
+      </ion-item>
+
+    </ion-list>
+
+    <!-- Sin coincidencias -->
+    <div
+      class="estado"
+      *ngIf="!cargando && usuarios.length > 0 && usuariosFiltrados.length === 0">
+
+      <ion-text color="medium">
+        No se encontraron usuarios con ese nombre.
+      </ion-text>
+
+    </div>
+
+  </div>
+
+</ion-content>

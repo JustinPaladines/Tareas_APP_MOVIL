@@ -1,0 +1,96 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear grupo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="contenedor">
+
+    <h1>Nuevo grupo</h1>
+    <p class="descripcion">
+      Crea una conversación grupal y agrega a las personas que quieras.
+    </p>
+
+    <!-- Nombre del grupo -->
+    <div class="formulario">
+      <ion-label position="stacked">Nombre del grupo</ion-label>
+
+      <ion-input
+        [(ngModel)]="nombreGrupo"
+        placeholder="Ej. Amigos de la universidad"
+        maxlength="100">
+      </ion-input>
+    </div>
+
+    <!-- Título de integrantes -->
+    <div class="seccion-integrantes">
+      <h2>Seleccionar integrantes</h2>
+      <p>Elige las personas que participarán en el grupo.</p>
+    </div>
+
+    <!-- Cargando usuarios -->
+    <div class="estado" *ngIf="cargando">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando usuarios...</p>
+    </div>
+
+    <!-- Mensaje cuando no hay usuarios -->
+    <div
+      class="estado"
+      *ngIf="!cargando && usuarios.length === 0">
+
+      <ion-text color="medium">
+        {{ mensaje || 'No hay usuarios disponibles.' }}
+      </ion-text>
+    </div>
+
+    <!-- Lista de usuarios -->
+    <ion-list *ngIf="!cargando && usuarios.length > 0">
+
+      <ion-item *ngFor="let usuario of usuarios">
+
+        <ion-checkbox
+          slot="start"
+          [(ngModel)]="usuario.seleccionado">
+        </ion-checkbox>
+
+        <ion-label>
+          <h2>{{ usuario.nombre }}</h2>
+          <p>{{ usuario.descripcion || 'Sin descripción disponible' }}</p>
+        </ion-label>
+
+      </ion-item>
+
+    </ion-list>
+
+    <!-- Cantidad seleccionada -->
+    <p class="contador" *ngIf="usuarios.length > 0">
+      Integrantes seleccionados: {{ cantidadSeleccionados }}
+    </p>
+
+    <!-- Mensaje de error o confirmación -->
+    <div class="mensaje" *ngIf="mensaje && !cargando">
+      <ion-text color="primary">
+        {{ mensaje }}
+      </ion-text>
+    </div>
+
+    <!-- Botón crear -->
+    <ion-button
+      expand="block"
+      (click)="crearGrupo()"
+      [disabled]="cargando || creando">
+
+      <ion-spinner
+        *ngIf="creando"
+        name="crescent">
+      </ion-spinner>
+
+      {{ creando ? 'Creando grupo...' : 'Crear grupo' }}
+
+    </ion-button>
+
+  </div>
+</ion-content>

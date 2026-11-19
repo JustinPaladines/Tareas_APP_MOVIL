@@ -1,0 +1,60 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Iniciar sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="contenedor">
+
+    <div class="encabezado">
+      <h1>¡Bienvenido a ConnectChat!</h1>
+      <p>Ingresa a tu cuenta para continuar.</p>
+    </div>
+
+    <div class="campo">
+      <ion-label>Correo electrónico</ion-label>
+      <ion-item>
+        <ion-input
+          type="email"
+          placeholder="Ej. correo@gmail.com"
+          [(ngModel)]="email">
+        </ion-input>
+      </ion-item>
+    </div>
+
+    <div class="campo">
+      <ion-label>Contraseña</ion-label>
+      <ion-item>
+        <ion-input
+          type="password"
+          placeholder="Escribe tu contraseña"
+          [(ngModel)]="password">
+        </ion-input>
+      </ion-item>
+    </div>
+
+    <ion-button
+      expand="block"
+      class="boton"
+      (click)="iniciarSesion()"
+      [disabled]="cargando">
+
+      {{ cargando ? 'Ingresando...' : 'Iniciar sesión' }}
+
+    </ion-button>
+
+    <ion-text color="danger" *ngIf="mensaje">
+      <p class="mensaje">{{ mensaje }}</p>
+    </ion-text>
+
+    <div class="enlace">
+      <p>¿Todavía no tienes una cuenta?</p>
+      <ion-button fill="clear" routerLink="/registro">
+        Crear cuenta
+      </ion-button>
+    </div>
+
+  </div>
+</ion-content>

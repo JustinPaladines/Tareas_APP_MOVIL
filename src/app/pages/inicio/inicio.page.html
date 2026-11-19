@@ -1,0 +1,50 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ConnectChat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="bienvenida">
+
+    <h1>¡Bienvenido, {{ nombre }}!</h1>
+
+    <p>Has iniciado sesión correctamente.</p>
+    <p>{{ email }}</p>
+
+    <div class="seccion-opciones">
+
+      <h2>Conversaciones</h2>
+
+      <ion-button
+        expand="block"
+        routerLink="/usuarios">
+        Buscar usuarios
+      </ion-button>
+
+      <ion-button
+        expand="block"
+        routerLink="/grupos">
+        Mis grupos
+      </ion-button>
+
+      <ion-button
+        expand="block"
+        routerLink="/crear-grupo">
+        Crear grupo
+      </ion-button>
+
+    </div>
+
+    <ion-button
+      expand="block"
+      color="medium"
+      (click)="cerrarSesion()">
+      Cerrar sesión
+    </ion-button>
+
+  </div>
+
+</ion-content>

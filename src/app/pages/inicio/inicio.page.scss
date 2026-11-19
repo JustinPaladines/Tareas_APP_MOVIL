@@ -1,0 +1,26 @@
+:host { --cc-purple:#7050a0; --cc-dark:#503675; --cc-green:#78ad88; }
+ion-header ion-toolbar { --background:#fff; --color:var(--cc-dark); --border-color:#eee8f4; --min-height:62px; box-shadow:0 3px 14px rgba(58,39,83,.06); }
+ion-title { font-size:19px; font-weight:800; letter-spacing:.2px; }
+ion-content { --background:#f6f4f9; }
+.bienvenida {
+  max-width:560px; margin:0 auto; padding:34px 21px 28px; text-align:center;
+}
+.bienvenida h1 {
+  color:#503675; font-size:27px; line-height:1.25; font-weight:800; margin:16px 0 9px;
+}
+.bienvenida > p { color:#81788d; font-size:14px; line-height:1.55; margin:5px 0; overflow-wrap:anywhere; }
+.seccion-opciones {
+  margin:32px 0 22px; padding:23px 18px; background:#fff; border:1px solid #eee8f4;
+  border-radius:23px; box-shadow:0 8px 24px rgba(60,43,83,.06); text-align:left;
+}
+.seccion-opciones h2 { color:#503675; font-size:19px; font-weight:750; margin:0 0 16px; }
+.seccion-opciones ion-button {
+  --background:#7050a0; --background-hover:#5b3f83; --color:#fff; --border-radius:14px;
+  --box-shadow:none; height:48px; margin:10px 0; font-size:14px; font-weight:650;
+}
+.seccion-opciones ion-button:nth-of-type(2) { --background:#6b9f7a; --background-hover:#568866; }
+.seccion-opciones ion-button:nth-of-type(3) { --background:#eee8f6; --color:#5d4382; }
+.bienvenida > ion-button {
+  --background:transparent; --color:#765b91; --border-color:#d9cde7; --border-style:solid;
+  --border-width:1px; --border-radius:14px; --box-shadow:none; height:46px; font-weight:650;
+}

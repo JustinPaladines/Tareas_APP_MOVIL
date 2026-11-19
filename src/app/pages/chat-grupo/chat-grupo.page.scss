@@ -1,0 +1,271 @@
+
+ion-header {
+  ion-toolbar {
+    --background: #ffffff;
+    --color: #49336f;
+    --border-color: #eee8f5;
+    box-shadow: 0 2px 10px rgba(65, 42, 100, 0.06);
+  }
+
+  ion-title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  ion-buttons ion-button {
+    --color: #7654a8;
+    font-size: 13px;
+    font-weight: 600;
+  }
+}
+
+ion-content {
+  --background: #f7f5fb;
+}
+
+.contenedor {
+  min-height: 100%;
+  padding: 18px 14px 22px;
+  background: #f7f5fb;
+}
+
+.lista-mensajes {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  width: 100%;
+}
+
+.mensaje-fila {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.mensaje-fila.propio {
+  justify-content: flex-end;
+}
+
+.burbuja {
+  max-width: 82%;
+  min-width: 65px;
+  padding: 12px 15px;
+  background: #ffffff;
+  color: #30283d;
+  border-radius: 19px 19px 19px 5px;
+  box-shadow: 0 3px 10px rgba(55, 38, 83, 0.07);
+  overflow-wrap: anywhere;
+}
+
+.mensaje-fila.propio .burbuja {
+  background: #7654a8;
+  color: #ffffff;
+  border-radius: 19px 19px 5px 19px;
+}
+
+.contenido {
+  color: inherit;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.burbuja small {
+  display: block;
+  margin-top: 7px;
+  color: #8b8299;
+  font-size: 11px;
+}
+
+.mensaje-fila.propio .burbuja small {
+  color: #e5d9f4;
+}
+
+.eliminado {
+  color: #9992a5;
+  font-size: 13px;
+  font-style: italic;
+  margin: 0;
+}
+
+.acciones {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 7px;
+}
+
+.acciones ion-button {
+  --color: #7654a8;
+  font-size: 11px;
+  height: 27px;
+  margin: 0;
+}
+
+.mensaje-fila.propio .acciones ion-button {
+  --color: #ffffff;
+}
+
+.estado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 30px 15px;
+  text-align: center;
+  color: #777087;
+}
+
+.estado ion-spinner {
+  color: #7654a8;
+}
+
+ion-footer {
+  background: #ffffff;
+  border-top: 1px solid #eee8f5;
+}
+
+ion-footer ion-toolbar {
+  --background: #ffffff;
+  --border-width: 0;
+  padding: 5px 0;
+}
+
+.formulario-mensaje {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  width: 100%;
+}
+
+.formulario-mensaje ion-input {
+  flex: 1;
+  min-width: 0;
+  --background: #f1edf7;
+  --color: #30283d;
+  --placeholder-color: #91889e;
+  --placeholder-opacity: 1;
+  --padding-start: 15px;
+  --padding-end: 12px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  --highlight-color-focused: #7654a8;
+  border-radius: 24px;
+  font-size: 14px;
+}
+
+.formulario-mensaje ion-button {
+  --background: #7654a8;
+  --background-hover: #62428f;
+  --color: #ffffff;
+  --border-radius: 22px;
+  --box-shadow: none;
+  height: 42px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.formulario-mensaje ion-button[fill="clear"] {
+  --background: #eae3f3;
+  --color: #65448f;
+}
+
+.contenedor-imagen {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  max-width: 230px;
+}
+
+.contenedor-imagen img {
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 13px;
+}
+
+.contenedor-imagen small {
+  overflow-wrap: anywhere;
+}
+
+ion-input {
+  --color: #30283d;
+  --placeholder-color: #91889e;
+}
+
+@media (max-width: 380px) {
+  .formulario-mensaje {
+    gap: 4px;
+    padding: 6px;
+  }
+
+  .formulario-mensaje ion-button {
+    font-size: 11px;
+  }
+
+  .burbuja {
+    max-width: 88%;
+  }
+}
+:host {
+  --cc-purple: #7050a0; --cc-purple-dark: #503675; --cc-green: #78ad88;
+  --cc-ink: #30283b; --cc-muted: #82798e;
+}
+ion-header ion-toolbar {
+  --background: #fff; --color: var(--cc-purple-dark); --border-color: #eee8f4;
+  --min-height: 62px; box-shadow: 0 3px 14px rgba(58,39,83,.06);
+}
+ion-title { font-size: 17px; font-weight: 750; }
+ion-header ion-button { --color: #7050a0; font-weight: 650; }
+ion-content { --background: #f7f5fa; }
+.contenedor { min-height: 100%; padding: 20px 15px 26px; background: linear-gradient(180deg,#f7f5fa,#f3f5f1); }
+.lista-mensajes { display: flex; flex-direction: column; gap: 14px; }
+.mensaje-fila { display: flex; justify-content: flex-start; width: 100%; }
+.mensaje-fila.propio { justify-content: flex-end; }
+.burbuja {
+  max-width: min(82%,340px); min-width: 76px; padding: 12px 15px;
+  background: #fff; color: #30283b; border: 1px solid #eeeaf2;
+  border-radius: 19px 19px 19px 5px; box-shadow: 0 4px 14px rgba(54,39,75,.06);
+  overflow-wrap: anywhere;
+}
+.mensaje-fila.propio .burbuja {
+  color: #fff; background: linear-gradient(145deg,#7959a7,#63458e);
+  border: 0; border-radius: 19px 19px 5px 19px; box-shadow: 0 5px 14px rgba(99,69,142,.18);
+}
+.contenido { color: inherit; margin: 0; font-size: 15px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+.burbuja small { display: block; margin-top: 7px; color: #91899b; font-size: 10px; }
+.mensaje-fila.propio .burbuja small { color: #e8def2; }
+.eliminado { color: #938b9b; font-size: 13px; font-style: italic; margin: 0; }
+.acciones { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 3px; margin-top: 7px; }
+.acciones ion-button { --color: #7657a0; font-size: 11px; height: 27px; margin: 0; }
+.mensaje-fila.propio .acciones ion-button { --color: #f2eafa; }
+.estado { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; padding: 34px 20px; text-align: center; color: #82798e; }
+.estado ion-spinner { color: #7050a0; }
+.contenedor-imagen { display: flex; flex-direction: column; gap: 7px; max-width: 240px; }
+.contenedor-imagen img { width: 100%; max-height: 280px; object-fit: cover; border-radius: 13px; }
+.contenedor-imagen small { overflow-wrap: anywhere; }
+ion-footer { background: #fff; border-top: 1px solid #eee8f4; }
+ion-footer ion-toolbar { --background: #fff; --border-width: 0; padding: 5px 0; }
+.formulario-mensaje { display: flex; align-items: center; gap: 7px; padding: 8px 11px; }
+.formulario-mensaje ion-input {
+  flex: 1; min-width: 0; --background: #f1edf6; --color: #30283b;
+  --placeholder-color: #91889d; --placeholder-opacity: 1;
+  --padding-start: 15px; --padding-end: 12px; --padding-top: 12px; --padding-bottom: 12px;
+  --highlight-color-focused: #7654a0; border: 1px solid #e8e0f0; border-radius: 24px; font-size: 14px;
+}
+.formulario-mensaje ion-button {
+  --background: #7050a0; --background-hover: #5b3f83; --color: #fff;
+  --border-radius: 22px; --box-shadow: none; height: 42px; margin: 0; font-size: 12px; font-weight: 650;
+}
+.formulario-mensaje ion-button[fill="clear"] { --background: #e9f2eb; --color: #477958; }
+@media (max-width: 380px) {
+  .formulario-mensaje { gap: 4px; padding: 6px; }
+  .formulario-mensaje ion-button { font-size: 10px; }
+  .burbuja { max-width: 88%; }
+}

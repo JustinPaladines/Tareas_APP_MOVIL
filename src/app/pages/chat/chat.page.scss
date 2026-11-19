@@ -1,0 +1,458 @@
+
+:host {
+  --cc-purple: #7050a0;
+  --cc-purple-dark: #503675;
+  --cc-purple-soft: #eee8f6;
+  --cc-green: #78ad88;
+  --cc-green-soft: #e8f3eb;
+  --cc-ink: #30283b;
+  --cc-muted: #82798e;
+}
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+ion-header ion-toolbar {
+  --background: #ffffff;
+  --color: var(--cc-purple-dark);
+  --border-color: #eee8f4;
+  --min-height: 62px;
+  box-shadow: 0 3px 14px rgba(58, 39, 83, 0.06);
+}
+
+ion-title {
+  font-size: 18px;
+  font-weight: 750;
+  letter-spacing: 0.2px;
+}
+
+/* ========================================
+   CONTENEDOR PRINCIPAL
+======================================== */
+
+ion-content {
+  --background: #f7f5fa;
+}
+
+.contenedor-chat {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 20px 15px 26px;
+  background: linear-gradient(
+    180deg,
+    #f7f5fa 0%,
+    #f3f5f1 100%
+  );
+}
+
+/* ========================================
+   ESTADOS
+======================================== */
+
+.estado,
+.sin-mensajes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 34px 20px;
+  text-align: center;
+  color: var(--cc-muted);
+}
+
+.estado ion-spinner {
+  color: var(--cc-purple);
+}
+
+.sin-mensajes p {
+  margin: 3px 0;
+}
+
+/* ========================================
+   LISTA DE MENSAJES
+======================================== */
+
+.lista-mensajes {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.mensaje {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.mensaje.mio {
+  align-items: flex-end;
+}
+
+/* ========================================
+   BURBUJAS
+======================================== */
+
+.burbuja {
+  max-width: min(82%, 340px);
+  min-width: 76px;
+  padding: 12px 15px;
+  border: 1px solid #eeeaf2;
+  border-radius: 19px 19px 19px 5px;
+  background: #ffffff;
+  color: var(--cc-ink);
+  box-shadow: 0 4px 14px rgba(54, 39, 75, 0.06);
+  overflow-wrap: anywhere;
+}
+
+.mensaje.mio .burbuja {
+  color: #ffffff;
+  background: linear-gradient(
+    145deg,
+    #7959a7,
+    #63458e
+  );
+  border: 0;
+  border-radius: 19px 19px 5px 19px;
+  box-shadow: 0 5px 14px rgba(99, 69, 142, 0.18);
+}
+
+.burbuja p {
+  margin: 0;
+  color: inherit;
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.burbuja small {
+  display: block;
+  margin-top: 7px;
+  color: #91899b;
+  font-size: 10px;
+}
+
+.mensaje.mio .burbuja small {
+  color: #e8def2;
+}
+
+.mensaje-eliminado {
+  color: #938b9b !important;
+  font-style: italic;
+  font-size: 13px !important;
+}
+
+/* ========================================
+   ACCIONES DE MENSAJES
+======================================== */
+
+.acciones-mensaje {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-top: 7px;
+}
+
+.acciones-mensaje ion-button {
+  --color: #7657a0;
+  font-size: 11px;
+  height: 27px;
+  margin: 0;
+}
+
+.mensaje.mio .acciones-mensaje ion-button {
+  --color: #f2eafa;
+}
+
+/* ========================================
+   IMÁGENES
+======================================== */
+
+.contenedor-imagen {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  max-width: 240px;
+}
+
+.contenedor-imagen img {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  border-radius: 13px;
+}
+
+.contenedor-imagen small {
+  overflow-wrap: anywhere;
+}
+
+/* ========================================
+   ARCHIVOS Y UBICACIONES
+======================================== */
+
+.contenedor-archivo,
+.contenedor-ubicacion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contenedor-archivo a,
+.contenedor-ubicacion a {
+  color: #7654a8;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.mensaje.mio .contenedor-archivo a,
+.mensaje.mio .contenedor-ubicacion a {
+  color: #ffffff;
+}
+
+/* ========================================
+   REACCIONES
+======================================== */
+
+.reacciones-mensaje {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 5px 4px;
+}
+
+.reaccion {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 9px;
+  border: 1px solid #e5deed;
+  border-radius: 15px;
+  background: #ffffff;
+  color: var(--cc-ink);
+  font-size: 13px;
+}
+
+.reaccion.mi-reaccion {
+  background: var(--cc-purple-soft);
+  border-color: var(--cc-purple);
+}
+
+.contenedor-boton-reaccion {
+  margin: 2px 5px;
+}
+
+.boton-reaccion {
+  padding: 4px 9px;
+  border: 1px solid #e5deed;
+  border-radius: 15px;
+  background: #ffffff;
+  color: var(--cc-purple);
+  font-size: 13px;
+}
+
+.selector-reacciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 8px;
+  margin: 4px;
+  border: 1px solid #eee8f4;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 3px 12px rgba(54, 39, 75, 0.08);
+}
+
+.selector-reacciones button {
+  padding: 5px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* ========================================
+   INDICADOR DE ESCRITURA
+======================================== */
+
+.estado-escritura {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 9px;
+  width: fit-content;
+  max-width: 85%;
+  min-height: 38px;
+  padding: 9px 15px;
+  margin-top: 12px;
+  border: 1px solid #e9e2f0;
+  border-radius: 18px 18px 18px 5px;
+  background: #ffffff;
+  color: #7654a8;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 3px 10px rgba(54, 39, 75, 0.06);
+  animation: aparecer-escritura 0.2s ease;
+}
+
+.puntos-escritura {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.puntos-escritura span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7654a8;
+  animation: animacion-puntos 1.2s infinite ease-in-out;
+}
+
+.puntos-escritura span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.puntos-escritura span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes animacion-puntos {
+  0%, 60%, 100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes aparecer-escritura {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   PIE DE PÁGINA
+======================================== */
+
+ion-footer {
+  background: #ffffff;
+  border-top: 1px solid #eee8f4;
+}
+
+ion-footer ion-toolbar {
+  --background: #ffffff;
+  --border-width: 0;
+  padding: 5px 0;
+}
+
+/* ========================================
+   CONTENEDOR DE ESCRITURA
+======================================== */
+
+.contenedor-escritura {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  padding: 5px 10px;
+}
+
+/* Herramientas */
+
+.herramientas-chat {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.herramientas-chat ion-button {
+  font-size: 12px;
+  margin: 0;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --background: #e9f2eb;
+  --color: #477958;
+}
+
+/* Entrada de mensaje */
+
+.entrada-chat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.entrada-chat ion-input {
+  flex: 1;
+  min-width: 0;
+  --background: #f1edf6;
+  --color: #30283b;
+  --placeholder-color: #91889d;
+  --placeholder-opacity: 1;
+  --padding-start: 15px;
+  --padding-end: 12px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  --highlight-color-focused: #7654a0;
+  border: 1px solid #e8e0f0;
+  border-radius: 24px;
+  font-size: 14px;
+}
+
+.entrada-chat ion-button {
+  --background: #7050a0;
+  --background-hover: #5b3f83;
+  --color: #ffffff;
+  --border-radius: 22px;
+  --box-shadow: none;
+  height: 42px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 380px) {
+  .contenedor-escritura {
+    gap: 4px;
+    padding: 6px;
+  }
+
+  .herramientas-chat ion-button {
+    font-size: 10px;
+    --padding-start: 5px;
+    --padding-end: 5px;
+  }
+
+  .entrada-chat ion-button {
+    font-size: 11px;
+  }
+
+  .burbuja {
+    max-width: 88%;
+  }
+}
